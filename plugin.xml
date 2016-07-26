@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<plugin xmlns="http://www.phonegap.com/ns/plugins/1.0"
+        id="com.commontime.cordova.public.provisioning"
+        version="0.0.8">
+
+  <name>Provisioning Plugin</name>
+  <description>CommonTime Infinity public provisioning plugin.</description>
+
+  <engines>
+    <engine name="cordova" version=">=4.1.1"/>
+  </engines>
+
+  <js-module src="www/provisioning.js" name="Provisioning">
+    <clobbers target="plugins.provisioning" />
+  </js-module>
+
+  <platform name="ios">
+
+    <config-file target="config.xml" parent="/*">
+      <feature name="Provisioning">
+        <param name="onload" value="true" />
+        <param name="ios-package" value="CTProvisioner"/>
+      </feature>
+    </config-file>
+
+    <source-file src="src/ios/libprovisioning.a" framework="true"/>
+    <source-file src="src/ios/libZipArchive-ios.a" framework="true"/>
+
+    <framework src="libz.dylib" />
+  </platform>
+
+</plugin>
