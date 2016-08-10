@@ -1,3 +1,4 @@
+
 module.exports = {
   updateVersions: function (success, fail) {
     try {
@@ -36,21 +37,22 @@ module.exports = {
   }
 }
 
-cordova.exec(function (version) {
-  var event = document.createEvent("CustomEvent");
-
-  event.initCustomEvent("updateavailable", true, true, { version: version });
-  setTimeout(function () { document.dispatchEvent(event); }, 0);
-}, function () { }, 'Provisioning', 'listenForUpdates', []);
-
-cordova.exec(function (progress) {
-  var event = document.createEvent("CustomEvent");
-
-  event.initCustomEvent("updateprogress", true, true, progress);
-  document.dispatchEvent(event);
-}, function () { }, 'Provisioning', 'listenForProgress', []);
-
 document.addEventListener("deviceready", function () {
+
+  cordova.exec(function (version) {
+    var event = document.createEvent("CustomEvent");
+
+    event.initCustomEvent("updateavailable", true, true, { version: version });
+    setTimeout(function () { document.dispatchEvent(event); }, 0);
+  }, function () { }, 'Provisioning', 'listenForUpdates', []);
+
+  cordova.exec(function (progress) {
+    var event = document.createEvent("CustomEvent");
+
+    event.initCustomEvent("updateprogress", true, true, progress);
+    document.dispatchEvent(event);
+  }, function () { }, 'Provisioning', 'listenForProgress', []);
+
   cordova.exec(function (result) {
     if (result) {
       cordova.exec(function () { }, function () { }, 'Provisioning', 'startChecking', []);
@@ -61,4 +63,3 @@ document.addEventListener("deviceready", function () {
     alert("Could not restart into installed app: " + error);
   }, 'Provisioning', 'isUsingInstalledVersion', []);
 }, false);
-
