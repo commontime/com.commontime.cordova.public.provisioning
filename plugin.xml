@@ -14,6 +14,42 @@
     <clobbers target="plugins.provisioning" />
   </js-module>
 
+  <platform name="android">    
+	<config-file target="config.xml" parent="/*">
+	  <feature name="Provisioning">
+	    <param name="onload" value="true" />
+        <param name="android-package" value="com.commontime.cordova.plugins.provisioning.Provisioning" />
+      </feature>	
+	</config-file>	
+	
+	<config-file target="AndroidManifest.xml" parent="/manifest">
+      <uses-permission android:name="android.permission.INTERNET" />
+      <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+      <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+      <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    </config-file>
+    <config-file target="AndroidManifest.xml" parent="/manifest/application">
+      <receiver android:name="com.commontime.cordova.plugins.provisioning.ScheduleReceiver">
+        <intent-filter>
+          <action android:name="android.intent.action.BOOT_COMPLETED" />
+        </intent-filter>
+      </receiver>
+      <service
+          android:name="com.commontime.cordova.plugins.provisioning.DownloadService"
+          android:exported="false" />
+    </config-file>
+	
+	<framework src="commons-codec:commons-codec:1.9" /> 
+    <framework src="commons-io:commons-io:2.4" />   
+    <framework src="com.github.zafarkhaja:java-semver:0.9.0" />
+    <framework src="com.android.support:support-v4:23.1.0" />
+    <framework src="com.android.volley:volley:1.0.0" />
+    
+	<framework src="src/android/gradle/provisioning.gradle" custom="true" type="gradleReference" /> 
+	<resource-file src="aar/provisioning.aar" target="aar/provisioning.aar" />	
+	
+  </platform>
+  
   <platform name="ios">
 
     <config-file target="config.xml" parent="/*">

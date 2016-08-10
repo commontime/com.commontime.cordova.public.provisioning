@@ -3,11 +3,6 @@
 ### Configuration
 
 ```
-<!-- The "fake" connection details that files are "served" from on the device -->
-<preference name="provisioning_host" value="54.211.191.169" />
-<preference name="provisioning_port" value="616" />
-<preference name="provisioning_ssl" value="false" />
-
 <!-- The page that is launched to start the application -->
 <preference name="provisioning_startpage" value="index.html" />
 
