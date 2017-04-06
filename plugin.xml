@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <plugin xmlns="http://www.phonegap.com/ns/plugins/1.0"
         id="com.commontime.cordova.public.provisioning"
-        version="0.0.10">
+        version="0.0.11">
 
   <name>Provisioning Plugin</name>
   <description>CommonTime Infinity public provisioning plugin.</description>
@@ -44,7 +44,8 @@
     <framework src="com.github.zafarkhaja:java-semver:0.9.0" />
     <framework src="com.android.support:support-v4:23.1.0" />
     <framework src="com.android.volley:volley:1.0.0" />
-    
+    <framework src="org.apache.commons:commons-lang3:3.5" />
+
 	<framework src="src/android/gradle/provisioning.gradle" custom="true" type="gradleReference" /> 
 	<resource-file src="aar/provisioning.aar" target="aar/provisioning.aar" />	
 	
